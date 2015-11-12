@@ -197,7 +197,17 @@ if (typeof XMLHttpRequest === undef_type && typeof ActiveXObject !== undef_type)
 }
 
 String_ctr[$default_locale] = String_ctr[$default_locale] || "";
-String_ctr[$locale] = nav && (nav.language || nav.userLanguage) || "";
+if (nav) {
+    if (nav.languages && nav.languages.length > 0) {
+        String_ctr[$locale] = nav.languages[0];
+    }
+    else {
+        String_ctr[$locale] = nav.language || nav.userLanguage;
+    }
+}
+else {
+    String_ctr[$locale] = "";
+}
 
 if (typeof document !== undef_type) {
 	var
